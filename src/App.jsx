@@ -14,12 +14,14 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#001a0d', color: '#e8f5ee', fontFamily: 'Arial, sans-serif' }}>
+      {/* Header */}
       <div style={{ backgroundColor: '#006a3d', padding: '25px', textAlign: 'center', borderBottom: '6px solid #ffd100' }}>
         <div style={{ color: '#ffd100', fontSize: '11px', letterSpacing: '6px' }}>⬥ DAILY SPORTS EDITION ⬥</div>
         <h1 style={{ fontSize: '42px', margin: '8px 0 4px', color: '#ffffff' }}>THE PRESS BOX</h1>
-        <div style={{ color: '#ffd100', fontSize: '15px' }}>April 23, 2026 • Fenway Park Edition</div>
+        <div style={{ color: '#ffd100', fontSize: '15px' }}>April 23, 2026 • Fenway Edition</div>
       </div>
 
+      {/* Navigation */}
       <div style={{ display: 'flex', overflowX: 'auto', backgroundColor: '#002814', padding: '10px 0', borderBottom: '2px solid #006a3d' }}>
         {['FRONT', 'LIVE', 'PLAYERS', 'WAX', 'OZ'].map(label => (
           <button
@@ -40,11 +42,16 @@ export default function App() {
       </div>
 
       <div style={{ padding: '20px', maxWidth: '900px', margin: '0 auto' }}>
-        {tab === 'front' && <h2 style={{ color: '#ffd100', textAlign: 'center' }}>Good Morning. Here's what's hot today.</h2>}
+        {tab === 'front' && (
+          <div>
+            <h2 style={{ color: '#ffd100', textAlign: 'center' }}>Breaking News</h2>
+            <p>VJ Edgecombe drops 30 in Playoffs • Trout heating up • 2026 Draft buzz</p>
+          </div>
+        )}
 
         {tab === 'live' && (
           <div style={{ background: '#002814', padding: '25px', borderRadius: '12px' }}>
-            <h3 style={{ color: '#ffd100' }}>🔴 LIVE GAMES</h3>
+            <h3 style={{ color: '#ffd100' }}>🔴 LIVE SCORES</h3>
             <p>BOS @ NYY — 6:45 PM</p>
             <p>OKC vs PHX (Playoffs G2) — 9:30 PM</p>
           </div>
@@ -52,7 +59,7 @@ export default function App() {
 
         {tab === 'players' && (
           <div>
-            <h3 style={{ color: '#ffd100' }}>📈 CARD VALUE TREND (7 Weeks)</h3>
+            <h3 style={{ color: '#ffd100', marginBottom: '15px' }}>📈 CARD VALUE TREND</h3>
             <ResponsiveContainer width="100%" height={320}>
               <LineChart data={chartData}>
                 <CartesianGrid stroke="#1a4030" />
@@ -65,11 +72,27 @@ export default function App() {
                 <Line type="monotone" dataKey="Trout" stroke="#ff9800" strokeWidth={4} name="Trout" />
               </LineChart>
             </ResponsiveContainer>
+            <div style={{ marginTop: '20px' }}>
+              <p><strong>Shohei Ohtani</strong> — $2,100 (+7.7%)</p>
+              <p><strong>VJ Edgecombe</strong> — $175 (+169% 🔥)</p>
+            </div>
           </div>
         )}
 
-        {tab === 'wax' && <div style={{ padding: '40px', textAlign: 'center' }}><h3>📦 2026 Bowman & Topps Chrome</h3><p>Pre-order & Resell tracker coming</p></div>}
-        {tab === 'oz' && <div style={{ padding: '40px', textAlign: 'center' }}><h3>🔮 OZ Daily Picks</h3><p>Investment & Gambling plays loading...</p></div>}
+        {tab === 'wax' && (
+          <div>
+            <h3 style={{ color: '#ffd100' }}>📦 WAX TRACKER</h3>
+            <p>2026 Bowman Draft • Topps Chrome • Prizm Basketball</p>
+          </div>
+        )}
+
+        {tab === 'oz' && (
+          <div>
+            <h3 style={{ color: '#ffd100' }}>🔮 OZ PREDICTIONS</h3>
+            <p>Strong Buy: Ethan Holliday Bowman Auto</p>
+            <p>Today's Best Bet: Angels ML</p>
+          </div>
+        )}
       </div>
     </div>
   );
