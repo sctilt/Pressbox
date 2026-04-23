@@ -1,4 +1,3 @@
-// app/page.tsx
 'use client';
 
 import { useState } from 'react';
@@ -62,8 +61,7 @@ export default function ThePressBox() {
         {tab === 'front' && (
           <div style={{ background: G.bg2, padding: '25px', borderRadius: '10px', border: `1px solid ${G.green}` }}>
             <h2 style={{ color: G.gold, marginTop: 0 }}>✅ Build Successful!</h2>
-            <p>Welcome to <strong>The Press Box</strong> — your daily sports cards newspaper.</p>
-            <p>Live scores, player cards, wax releases, and Oz predictions are ready to be added.</p>
+            <p>Welcome to <strong>The Press Box</strong>.</p>
           </div>
         )}
 
@@ -96,7 +94,7 @@ export default function ThePressBox() {
         {tab === 'wax' && (
           <div style={{ background: G.bg2, padding: '30px', borderRadius: '10px', textAlign: 'center' }}>
             <h2 style={{ color: G.gold }}>Wax Tracker</h2>
-            <p>2026 Bowman • Topps Chrome • Prizm releases tracking coming soon.</p>
+            <p>Coming soon...</p>
           </div>
         )}
       </div>
