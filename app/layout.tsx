@@ -4,7 +4,6 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'The Press Box',
   description: 'Daily Sports Cards & Live Scores',
-  icons: { icon: '/favicon.ico' },
 };
 
 export default function RootLayout({
@@ -14,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ margin: 0 }}>{children}</body>
+      <body style={{ margin: 0, padding: 0 }}>{children}</body>
     </html>
   );
 }
