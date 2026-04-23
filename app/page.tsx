@@ -1,29 +1,27 @@
 'use client';
 
 import { useState } from 'react';
-import SportTab from '@/components/SportTab';
-import MyPlayersPanel from '@/components/MyPlayersPanel';
-import WaxTab from '@/components/WaxTab';
-import OzTab from '@/components/OzTab';
-import LiveScores from '@/components/LiveScores';
-import PlayerProgressChart from '@/components/PlayerProgressChart';
-import Headlines from '@/components/Headlines';
-import ArchivePage from '@/components/ArchivePage';
+import { G, ALL_PLAYERS } from '@/lib/data';
 
-import { ALL_PLAYERS, /* other exports */ } from '@/lib/data';
-
-export default function ThePressBox() {
-  const [tab, setTab] = useState<"front" | "mlb" | "nba" | "nfl" | "watch" | "wax" | "oz">("front");
-  const [players, setPlayers] = useState(ALL_PLAYERS);
-  const [archive, setArchive] = useState<any[]>([]);
-  const [showArchive, setShowArchive] = useState(false);
-
-  // ... rest of your logic (handleNewHeadlines, today date, etc.)
+export default function Home() {
+  const [tab, setTab] = useState('front');
 
   return (
-    <div className="min-h-screen bg-[#001a0d] text-white">
-      {/* Masthead + Nav (copy your existing JSX) */}
-      {/* ... */}
+    <div style={{ background: G.bg, color: G.text, minHeight: '100vh', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+      <h1 style={{ color: G.gold, textAlign: 'center' }}>The Press Box</h1>
+      <p>Build successful! Now add your components.</p>
+      
+      <div style={{ marginTop: 30 }}>
+        <button onClick={() => setTab('front')} style={{ background: tab === 'front' ? G.gold : G.green, color: G.bg, marginRight: 10 }}>
+          Front Page
+        </button>
+        <button onClick={() => setTab('watch')} style={{ background: tab === 'watch' ? G.gold : G.green, color: G.bg }}>
+          My Players
+        </button>
+      </div>
+
+      {tab === 'front' && <p>Live Scores + Headlines coming soon...</p>}
+      {tab === 'watch' && <p>My Players Panel (add your component here)</p>}
     </div>
   );
 }
