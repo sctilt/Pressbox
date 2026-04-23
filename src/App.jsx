@@ -10,11 +10,11 @@ const chartData = [
 ];
 
 const players = [
-  { name: "Shohei Ohtani", team: "LAD", value: 2100, change: 7.7 },
-  { name: "Aaron Judge", team: "NYY", value: 965, change: 10.3 },
-  { name: "VJ Edgecombe", team: "PHI", value: 175, change: 169 },
-  { name: "Mike Trout", team: "LAA", value: 620, change: 63 },
-  { name: "Yordan Alvarez", team: "HOU", value: 325, change: 23.6 },
+  { name: "Shohei Ohtani", team: "LAD", value: 2100, change: 7.7, sport: "MLB" },
+  { name: "Aaron Judge", team: "NYY", value: 965, change: 10.3, sport: "MLB" },
+  { name: "VJ Edgecombe", team: "PHI", value: 175, change: 169, sport: "NBA" },
+  { name: "Mike Trout", team: "LAA", value: 620, change: 63, sport: "MLB" },
+  { name: "Yordan Alvarez", team: "HOU", value: 325, change: 23.6, sport: "MLB" },
 ];
 
 export default function App() {
@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#001a0d', color: '#e8f5ee', fontFamily: 'Arial, sans-serif' }}>
-      {/* Header */}
+      {/* Masthead */}
       <div style={{ backgroundColor: '#006a3d', padding: '25px', textAlign: 'center', borderBottom: '6px solid #ffd100' }}>
         <div style={{ color: '#ffd100', fontSize: '11px', letterSpacing: '6px' }}>⬥ DAILY SPORTS EDITION ⬥</div>
         <h1 style={{ fontSize: '42px', margin: '8px 0 4px', color: '#ffffff' }}>THE PRESS BOX</h1>
@@ -42,7 +42,6 @@ export default function App() {
               border: 'none',
               fontWeight: 'bold',
               whiteSpace: 'nowrap',
-              flex: '1',
               minWidth: '80px'
             }}
           >
@@ -52,29 +51,26 @@ export default function App() {
       </div>
 
       <div style={{ padding: '20px', maxWidth: '900px', margin: '0 auto' }}>
-        {/* FRONT PAGE */}
         {tab === 'front' && (
           <div>
-            <h2 style={{ color: '#ffd100', textAlign: 'center' }}>🔥 Today's Top Stories</h2>
-            <div style={{ background: '#002814', padding: '20px', borderRadius: '12px', margin: '20px 0' }}>
-              <p><strong>VJ Edgecombe</strong> drops 30 pts in Playoffs G2 — Series tied</p>
-              <p><strong>Mike Trout</strong> heating up — 5 HRs in 4 games</p>
-              <p><strong>2026 NFL Draft</strong> begins tomorrow in Pittsburgh</p>
+            <h2 style={{ color: '#ffd100' }}>🔥 Breaking News</h2>
+            <div style={{ background: '#002814', padding: '20px', borderRadius: '12px', margin: '15px 0' }}>
+              VJ Edgecombe drops 30 in Playoffs G2<br />
+              Mike Trout on vintage tear<br />
+              2026 NFL Draft starts tomorrow in Pittsburgh
             </div>
           </div>
         )}
 
-        {/* LIVE SCORES */}
         {tab === 'live' && (
           <div style={{ background: '#002814', padding: '25px', borderRadius: '12px' }}>
-            <h3 style={{ color: '#ffd100' }}>🔴 LIVE & TODAY'S GAMES</h3>
-            <p>BOS @ NYY — 6:45 PM ET</p>
-            <p>OKC vs PHX — NBA Playoffs G2 • 9:30 PM ET</p>
-            <p style={{ color: '#00e676', marginTop: '15px' }}>More games updating live...</p>
+            <h3 style={{ color: '#ffd100' }}>🔴 LIVE SCORES</h3>
+            <p>BOS @ NYY — 6:45 PM</p>
+            <p>OKC vs PHX — Playoffs G2 9:30 PM</p>
+            <p style={{ color: '#00e676' }}>More games updating...</p>
           </div>
         )}
 
-        {/* PLAYERS */}
         {tab === 'players' && (
           <div>
             <h3 style={{ color: '#ffd100', marginBottom: '15px' }}>📈 CARD VALUE TREND</h3>
@@ -84,22 +80,22 @@ export default function App() {
                 <XAxis dataKey="week" stroke="#7ab893" />
                 <YAxis stroke="#7ab893" />
                 <Tooltip />
-                <Line type="monotone" dataKey="Ohtani" stroke="#ffd100" strokeWidth={4} name="Ohtani" />
-                <Line type="monotone" dataKey="Judge" stroke="#00e676" strokeWidth={4} name="Judge" />
-                <Line type="monotone" dataKey="Edgecombe" stroke="#ffffff" strokeWidth={4} name="Edgecombe" />
+                <Line type="monotone" dataKey="Ohtani" stroke="#ffd100" strokeWidth={4} />
+                <Line type="monotone" dataKey="Judge" stroke="#00e676" strokeWidth={4} />
+                <Line type="monotone" dataKey="Edgecombe" stroke="#ffffff" strokeWidth={4} />
               </LineChart>
             </ResponsiveContainer>
 
             <h3 style={{ color: '#ffd100', margin: '25px 0 15px' }}>⭐ Tracked Players</h3>
             {players.map(p => (
-              <div key={p.name} style={{ background: '#002814', padding: '18px', marginBottom: '12px', borderRadius: '10px', border: '1px solid #006a3d' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div key={p.name} style={{ background: '#002814', padding: '18px', marginBottom: '12px', borderRadius: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
                     <strong>{p.name}</strong><br />
                     <span style={{ color: '#7ab893' }}>{p.team}</span>
                   </div>
                   <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '22px', color: '#ffd100' }}>${p.value}</div>
+                    <div style={{ fontSize: '24px', color: '#ffd100' }}>${p.value}</div>
                     <div style={{ color: p.change > 0 ? '#00e676' : '#ff4444' }}>
                       {p.change > 0 ? '▲' : '▼'} {p.change}%
                     </div>
@@ -110,22 +106,20 @@ export default function App() {
           </div>
         )}
 
-        {/* WAX */}
         {tab === 'wax' && (
           <div style={{ background: '#002814', padding: '25px', borderRadius: '12px' }}>
             <h3 style={{ color: '#ffd100' }}>📦 WAX TRACKER</h3>
             <p><strong>2026 Bowman Draft</strong> — May 13 (Pre-order live)</p>
             <p><strong>2026 Topps Chrome</strong> — August</p>
-            <p><strong>2025-26 Prizm Basketball</strong> — Already heating up</p>
+            <p><strong>2025-26 Prizm Basketball</strong> — Hot right now</p>
           </div>
         )}
 
-        {/* OZ */}
         {tab === 'oz' && (
           <div style={{ background: '#002814', padding: '25px', borderRadius: '12px' }}>
-            <h3 style={{ color: '#ffd100' }}>🔮 OZ DAILY PICKS</h3>
-            <p><strong>Strong Buy:</strong> Ethan Holliday 2026 Bowman 1st Auto</p>
-            <p><strong>Today's Best Bet:</strong> Angels ML vs TOR (+185)</p>
+            <h3 style={{ color: '#ffd100' }}>🔮 OZ DAILY</h3>
+            <p><strong>Strong Buy:</strong> Ethan Holliday Bowman 1st Auto</p>
+            <p><strong>Best Bet:</strong> Angels ML vs TOR (+185)</p>
             <p><strong>High Confidence:</strong> Jose Soriano Over 6.5 Ks</p>
           </div>
         )}
